@@ -1,0 +1,33 @@
+?- trace.
+true.
+
+?- suma_n(3, R).
+   Call: (10) suma_n(3, _G123) 
+   % Intenta caso base: falla. Pasa a regla recursiva.
+   Call: (11) 3>1 
+   Exit: (11) 3>1 
+   Call: (11) _G135 is 3-1 
+   Exit: (11) 2 is 3-1 
+   
+   % Primera recursión
+   Call: (11) suma_n(2, _G144) 
+   % Intenta caso base: falla. Pasa a regla recursiva.
+   Call: (12) 2>1 
+   Exit: (12) 2>1 
+   Call: (12) _G156 is 2-1 
+   Exit: (12) 1 is 2-1 
+   
+   % Segunda recursión
+   Call: (12) suma_n(1, _G165) 
+   % Alcanza el caso base con éxito.
+   Exit: (12) suma_n(1, 1) 
+   
+   % Retorno y operaciones aritméticas (Backtracking exitoso hacia arriba)
+   Call: (12) _G144 is 2+1 
+   Exit: (12) 3 is 2+1 
+   Exit: (11) suma_n(2, 3) 
+   
+   Call: (11) _G123 is 3+3 
+   Exit: (11) 6 is 3+3 
+   Exit: (10) suma_n(3, 6) 
+R = 6.
