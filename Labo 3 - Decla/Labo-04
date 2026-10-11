@@ -1,0 +1,10 @@
+% Caso base: si el valor es menor a 10, se retorna directamente en una lista de un elemento.
+descomponer(Valor, [Valor]) :- 
+    Valor < 10.
+
+% Caso recursivo: para valores de dos o más dígitos, se extrae el último y se continúa con el resto.
+descomponer(Valor, [UltimoDato | Cola]) :-
+    Valor >= 10,
+    UltimoDato is Valor mod 10,        % Obtiene la cifra final
+    SiguienteVal is Valor // 10,     % Desecha la cifra final
+    descomponer(SiguienteVal, Cola).
